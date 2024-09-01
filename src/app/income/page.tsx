@@ -1,4 +1,4 @@
-const Income = () => {
+const IncomePage = () => {
   return (
     <>
       <h2>Income Page</h2>
@@ -7,4 +7,4 @@ const Income = () => {
   );
 };
 
-export default Income;
+export default IncomePage;

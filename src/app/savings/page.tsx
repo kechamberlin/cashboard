@@ -1,4 +1,4 @@
-const Savings = () => {
+const SavingsPage = () => {
   return (
     <>
       <h2>Savings</h2>
@@ -7,4 +7,4 @@ const Savings = () => {
   );
 };
 
-export default Savings;
+export default SavingsPage;

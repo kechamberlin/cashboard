@@ -1,4 +1,4 @@
-const TotalBalance = () => {
+const TotalBalancePage = () => {
   return (
     <>
       <h2>Total Balance</h2>
@@ -7,4 +7,4 @@ const TotalBalance = () => {
   );
 };
 
-export default TotalBalance;
+export default TotalBalancePage;
