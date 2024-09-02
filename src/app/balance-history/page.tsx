@@ -1,4 +1,4 @@
-const BalanceHistory = () => {
+const BalanceHistoryPage = () => {
   return (
     <>
       <h2>Balance History</h2>
@@ -7,4 +7,4 @@ const BalanceHistory = () => {
   );
 };
 
-export default BalanceHistory;
+export default BalanceHistoryPage;

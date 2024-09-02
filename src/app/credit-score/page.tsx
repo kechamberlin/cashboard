@@ -1,4 +1,4 @@
-const CreditScore = () => {
+const CreditScorePage = () => {
   return (
     <>
       <h2>Credit Score</h2>
@@ -7,4 +7,4 @@ const CreditScore = () => {
   );
 };
 
-export default CreditScore;
+export default CreditScorePage;

@@ -1,110 +1,93 @@
-import Image from 'next/image';
-import styles from './page.module.css';
 import Link from 'next/link';
+import Income from './components/Income';
+import Expenses from './components/Expenses';
+import Saved from './components/Saved';
+import BalanceHistory from './components/BalanceHistory';
+import TotalBalance from './components/TotalBalance';
+import Investments from './components/Investments';
+import CreditScore from './components/CreditScore';
+import { Container, Grid, GridCol, Group, List, ListItem } from '@mantine/core';
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <div className={styles.grid}>
-          <div>
-            <Link href={`/income`}>
-              {/* TODO: create Income component */}
-              Income Page
-            </Link>
-          </div>
+    <Container mih={'100vh'} p={0} fluid bd={0}>
+      <Grid grow gutter={0}>
+        <GridCol span={2} bg={'white'} p={32} mih={'100vh'}>
+          <List withPadding listStyleType='none'>
+            <ListItem>Income</ListItem>
+            <ListItem>Expenses</ListItem>
+            <ListItem>
+              Savings
+              <List withPadding listStyleType='none'>
+                <ListItem>Family Savings</ListItem>
+                <ListItem>Rainy Day Fund</ListItem>
+                <ListItem>Baby</ListItem>
+                <ListItem>House</ListItem>
+              </List>
+            </ListItem>
 
-          <div>
-            <Link href={`/expenses`}>
-              {/* TODO: create Expenses component */}
-              Expenses Page
-            </Link>
-          </div>
+            <ListItem>Investments</ListItem>
+            <ListItem>Credit Score</ListItem>
+          </List>
+        </GridCol>
 
-          <Link href={`/savings`}>
-            {/* TODO: create Saved component */}
-            Saved
-          </Link>
-        </div>
-      </div>
+        <GridCol span={10} p={32}>
+          <Group grow gap={0} justify='flex-start' align='stretch' style={{ flexDirection: 'column' }} h={'100%'}>
+            {/* Income, Expenses, Saved */}
+            <Group grow>
+              <Grid justify='flex-start'>
+                <GridCol span={4}>
+                  <Link href={`/income`}>
+                    <Income />
+                  </Link>
+                </GridCol>
+                <GridCol span={4}>
+                  <Link href={`/expenses`}>
+                    <Expenses />
+                  </Link>
+                </GridCol>
+                <GridCol span={4}>
+                  <Link href={`/savings`}>
+                    <Saved />
+                  </Link>
+                </GridCol>
+              </Grid>
+            </Group>
 
-      <div className={styles.description}>
-        <div className={styles.grid}>
-          <Link href={`/balance-history`}>
-            {/* TODO: create BalanceHistory (with bar chart) component */}
-            Balance History
-          </Link>
+            {/* Balance History, Total Balance  */}
+            <Group grow>
+              <Grid justify='flex-start'>
+                <GridCol span={8}>
+                  <Link href={`/balance-history`}>
+                    <BalanceHistory />
+                  </Link>
+                </GridCol>
+                <GridCol span={4}>
+                  <Link href={`/total-balance`}>
+                    <TotalBalance />
+                  </Link>
+                </GridCol>
+              </Grid>
+            </Group>
 
-          <Link href={`/total-balance`}>
-            {/* TODO: create TotalBalance component */}
-            Total Balance
-          </Link>
-        </div>
-      </div>
-
-      <div className={styles.description}>
-        <div className={styles.grid}>
-          <Link href={`/investments`}>
-            {/* TODO: create Investments component */}
-            Investments
-          </Link>
-
-          <Link href={`/credit-score`}>
-            {/* TODO: create CreditScore (with gauge chart) component */}
-            Credit Score
-          </Link>
-        </div>
-      </div>
-
-      {/* <div className={styles.grid}>
-        <a
-          href='https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-          className={styles.card}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href='https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-          className={styles.card}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href='https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-          className={styles.card}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href='https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-          className={styles.card}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>Instantly deploy your Next.js site to a shareable URL with Vercel.</p>
-        </a>
-      </div> */}
-    </main>
+            {/* Investments, Credit Score */}
+            <Group grow>
+              <Grid justify='flex-start'>
+                <GridCol span={6}>
+                  <Link href={`/investments`}>
+                    <Investments />
+                  </Link>
+                </GridCol>
+                <GridCol span={6}>
+                  <Link href={`/credit-score`}>
+                    <CreditScore />
+                  </Link>
+                </GridCol>
+              </Grid>
+            </Group>
+          </Group>
+        </GridCol>
+      </Grid>
+    </Container>
   );
 }
