@@ -8,10 +8,10 @@ import './globals.css';
 
 const lexend = Lexend({ subsets: ['latin'], weight: '400' });
 
-export const metadata = {
-  title: 'Cashboard',
-  description: 'A personal finance application for those who prefer to micromanage their budget.',
-};
+// export const metadata = {
+//   title: 'Cashboard',
+//   description: 'A personal finance application for those who prefer to micromanage their budget.',
+// };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
