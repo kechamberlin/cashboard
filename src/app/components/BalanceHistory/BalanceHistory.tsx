@@ -45,30 +45,14 @@ const BalanceHistory = () => {
         data={MOCK_DATA}
         dataKey='month'
         valueFormatter={(value) => new Intl.NumberFormat('en-US').format(value)}
-        // series={[{ name: 'balance', label: 'Balance', color: 'cyan' }, ]}
         series={[
           { name: 'checking', label: 'Checking', color: 'cyan.3' },
           { name: 'savings', label: 'Savings', color: 'cyan.6' },
           { name: 'investments', label: 'Investments', color: 'cyan.9' },
         ]}
-        barProps={{ radius: 8 }}
         type='stacked'
+        strokeDasharray={''}
       />
-      {/* <LineChart
-        h={400}
-        data={MOCK_DATA}
-        dataKey='month'
-        valueFormatter={(value) => new Intl.NumberFormat('en-US').format(value)}
-        // series={[{ name: 'balance' }]}
-        series={[
-          { name: 'checking', label: 'Checking', color: 'red' },
-          { name: 'savings', label: 'Savings', color: 'green' },
-          // { name: 'investments', label: 'Investments', color: 'cyan.9' },
-        ]}
-        curveType='natural'
-        connectNulls
-        // strokeWidth={3}
-      /> */}
     </Card>
   );
 };
