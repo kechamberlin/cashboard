@@ -1,0 +1,11 @@
+.navlink {
+  border-radius: 8px;
+
+  /* &[data-active] {
+    font-weight: 900;
+  } */
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
