@@ -6,7 +6,7 @@ import { Card, ColorSchemeScript, Container, Grid, GridCol, MantineProvider } fr
 import NavDrawer from './components/NavDrawer/NavDrawer';
 import './globals.css';
 
-const lexend = Lexend({ subsets: ['latin'], weight: '400' });
+const lexend = Lexend({ subsets: ['latin'], weight: ['400'] });
 
 // export const metadata = {
 //   title: 'Cashboard',
