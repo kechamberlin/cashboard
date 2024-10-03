@@ -3,9 +3,11 @@
 
   /* &[data-active] {
     font-weight: 900;
+    background-color: #899eff;
   } */
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
+    /* background-color: #899eff; */
   }
 }
