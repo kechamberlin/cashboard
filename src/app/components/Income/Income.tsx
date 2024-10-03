@@ -43,7 +43,13 @@ const Income = () => {
         h={60}
         data={MOCK_DATA}
         dataKey='month'
-        valueFormatter={(value) => new Intl.NumberFormat('en-US').format(value)}
+        valueFormatter={(value) =>
+                      new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                        trailingZeroDisplay: 'stripIfInteger',
+                      }).format(value)
+                    }
         // series={[{ name: 'balance' }]}
         series={[{ name: 'balance', label: 'Income', color: 'green' }]}
         curveType='natural'
