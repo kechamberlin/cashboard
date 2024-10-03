@@ -1,25 +1,7 @@
 'use client';
 
-import { BarChart, DonutChart, LineChart, PieChart } from '@mantine/charts';
-import {
-  Box,
-  Card,
-  Container,
-  Divider,
-  Flex,
-  Grid,
-  GridCol,
-  Group,
-  List,
-  ListItem,
-  Progress,
-  SegmentedControl,
-  Space,
-  Stack,
-  Table,
-  TableData,
-  Text,
-} from '@mantine/core';
+import { AreaChart, DonutChart, PieChart } from '@mantine/charts';
+import { Box, Card, Divider, Grid, GridCol, Group, Progress, SegmentedControl, Space, Stack, Table, TableData, Text } from '@mantine/core';
 import { MonthPickerInput } from '@mantine/dates';
 import { IconCalendar } from '@tabler/icons-react';
 import type { Metadata } from 'next';
@@ -55,6 +37,9 @@ const IncomePage = () => {
     { month: 'Oct', income: 10500, expenses: 7500 },
     { month: 'Nov', income: 10000, expenses: 7000 },
     { month: 'Dec', income: 11000, expenses: 7500 },
+    // { month: 'Oct', income: null, expenses: null },
+    // { month: 'Nov', income: null, expenses: null },
+    // { month: 'Dec', income: null, expenses: null },
   ];
 
   const MOCK_TABLE_DATA: TableData = {
@@ -70,7 +55,6 @@ const IncomePage = () => {
   };
 
   return (
-    // <Group grow gap={0} justify='flex-start' align='stretch' style={{ flexDirection: 'column' }} h={'100%'} p={'md'}>
     <Stack align='stretch' justify='center' p={'md'}>
       {/* Compare Graph, Card */}
       <Group grow align='flex-start'>
@@ -89,39 +73,39 @@ const IncomePage = () => {
                   leftSectionPointerEvents='none'
                 />
               </Group>
-              {/* TODO: Insert compare graph */}
               <Group grow wrap='nowrap' align='flex-start'>
                 <GridCol span={8}>
-                  <LineChart
-                    // xAxisProps={{ padding: { left: 30, right: 30 } }}
+                  <AreaChart
                     h={300}
                     data={MOCK_DATA}
                     dataKey='month'
                     series={[
-                      { name: 'income', label: 'Income', color: 'green' },
-                      { name: 'expenses', label: 'Expenses', color: 'red' },
+                      { name: 'income', label: 'Income', color: 'green.7' },
+                      { name: 'expenses', label: 'Expenses', color: 'red.7' },
                     ]}
-                    curveType='linear'
-                    valueFormatter={(value) => new Intl.NumberFormat('en-US').format(value)}
-                    // unit='$'
+                    withGradient
+                    curveType='monotone'
                     withLegend
-                    // legendProps={{}}
-                    dotProps={{ r: 6, strokeWidth: 2, stroke: '#fff' }}
-                    activeDotProps={{ r: 8, strokeWidth: 1, fill: '#fff' }}
+                    valueFormatter={(value) =>
+                      new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                        trailingZeroDisplay: 'stripIfInteger',
+                      }).format(value)
+                    }
+                    tooltipAnimationDuration={200}
+                    dotProps={{ r: 0, strokeWidth: 0 }}
+                    activeDotProps={{ r: 4 }}
+                    fillOpacity={0.9}
+                    // withPointLabels
+
+                    // referenceLines={[
+                    //   { y: 8000, label: 'Average Income 2023', color: 'green.9' },
+                    //   { y: 5000, label: 'Average Expenses 2023', color: 'red.9' },
+                    // ]}
+                    // gridColor='gray.5'
+                    // textColor='gray.9'
                   />
-                  {/* <BarChart
-                            h={300}
-                            data={MOCK_DATA}
-                            dataKey='month'
-                            valueFormatter={(value) => new Intl.NumberFormat('en-US').format(value)}
-                            series={[
-                              { name: 'income', label: 'Income', color: 'green.9' },
-                              { name: 'expenses', label: 'Expenses', color: 'red.7' },
-                            ]}
-                            tickLine='xy'
-                            withLegend
-                            withBarValueLabel
-                          /> */}
                 </GridCol>
 
                 <GridCol span={4}>
@@ -135,12 +119,12 @@ const IncomePage = () => {
                           Balance
                         </Text>
                         {/* <MonthPickerInput
-                                  value={month}
-                                  onChange={setMonth}
-                                  aria-label='Month Picker Input'
-                                  leftSection={<IconCalendar width={20} height={20} stroke={1.5} />}
-                                  leftSectionPointerEvents='none'
-                                /> */}
+                              value={month}
+                              onChange={setMonth}
+                              aria-label='Month Picker Input'
+                              leftSection={<IconCalendar width={20} height={20} stroke={1.5} />}
+                              leftSectionPointerEvents='none'
+                            /> */}
                       </Group>
                       <Text size='xl' c='green'>
                         + $8,492.78
@@ -194,28 +178,6 @@ const IncomePage = () => {
                   </Text>
                 </Group>
 
-                {/* PIE CHART */}
-                {/* <PieChart
-                      withTooltip
-                      // mx='md'
-                      // size={180}
-                      strokeWidth={2}
-                      w={'100%'}
-                      data={
-                        value === 'income'
-                          ? [
-                              { name: 'Paycheck', value: 2453.52, color: 'green.9' },
-                              { name: 'Wells Fargo Rewards', value: 124.93, color: 'green.6' },
-                              { name: 'Interest', value: 329.44, color: 'green.3' },
-                            ]
-                          : [
-                              { name: 'Rent', value: 2750.0, color: 'red.9' },
-                              { name: 'Groceries', value: 907.43, color: 'red.6' },
-                              { name: 'Amazon', value: 342.69, color: 'red.3' },
-                            ]
-                      }
-                    /> */}
-
                 {/* DONUT CHART */}
                 <DonutChart
                   data={
@@ -235,9 +197,20 @@ const IncomePage = () => {
                   strokeWidth={3}
                   tooltipDataSource='segment'
                   // chartLabel={value}
-                  // chartLabel={MOCK_DATA[8]?.income}
+                  chartLabel={`${new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    trailingZeroDisplay: 'stripIfInteger',
+                  }).format(cashflow === 'income' ? MOCK_DATA[8]?.income : MOCK_DATA[8]?.expenses)}`}
                   // chartLabel={MOCK_DATA[8]?.month}
                   w={'100%'}
+                  valueFormatter={(value) =>
+                    new Intl.NumberFormat('en-US', {
+                      style: 'currency',
+                      currency: 'USD',
+                      trailingZeroDisplay: 'stripIfInteger',
+                    }).format(value)
+                  }
                 />
 
                 {cashflow === 'income' ? (
@@ -298,7 +271,6 @@ const IncomePage = () => {
           </GridCol>
         </Grid>
       </Group>
-      {/* </Group> */}
     </Stack>
   );
 };
