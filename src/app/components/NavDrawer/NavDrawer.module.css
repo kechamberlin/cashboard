@@ -1,5 +1,6 @@
 .navlink {
   border-radius: 8px;
+  color: white;
 
   /* &[data-active] {
     font-weight: 900;
