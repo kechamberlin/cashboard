@@ -1,7 +1,18 @@
 'use client';
 
-import { Avatar, Group, NavLink, Stack, Text } from '@mantine/core';
-import { IconChartBarPopular, IconCoins, IconCreditCard, IconHome, IconPigMoney, IconPoint } from '@tabler/icons-react';
+import { Avatar, Box, Card, Group, NavLink, Stack, Text, ThemeIcon } from '@mantine/core';
+import {
+  IconChartBarPopular,
+  IconCoins,
+  IconCreditCard,
+  IconHome,
+  IconMoonStars,
+  IconPigMoney,
+  IconPoint,
+  IconSun,
+  IconSunHigh,
+  IconSunset2,
+} from '@tabler/icons-react';
 import Link from 'next/link';
 import styles from './NavDrawer.module.css';
 import { usePathname } from 'next/navigation';
@@ -12,8 +23,27 @@ const NavDrawer = () => {
   return (
     <>
       {/* TODO: map over from a CMS when set up */}
-      <Stack align='stretch' justify='space-between' h={'100%'}>
+      {/* TODO: fix height issues */}
+      <Stack align='stretch' justify='space-between' h={'100%'} mah={850}>
         <Stack gap={0}>
+          {/* ~~~~~~~~~~~ */}
+          <Card bg={'#899eff'} c={'white'} radius={'md'}>
+            <Stack align='center'>
+              {/* <ThemeIcon radius='md' color='transparent' size={'xl'}>
+                <IconSunHigh style={{ width: '100%', height: '100%' }} />
+                <IconSun style={{ width: '100%', height: '100%' }} />
+                <IconSunset2 style={{ width: '100%', height: '100%' }} />
+              </ThemeIcon>
+              <Text>Good afternoon, Kris!</Text> */}
+              <ThemeIcon radius='md' color='transparent' size={'xl'}>
+                <IconMoonStars style={{ width: '100%', height: '100%' }} />
+              </ThemeIcon>
+              <Text>Good evening, Kris!</Text>
+            </Stack>
+          </Card>
+
+          {/* ~~~~~~~~~~~ */}
+
           <NavLink
             className={styles.navlink}
             component={Link}
@@ -118,7 +148,7 @@ const NavDrawer = () => {
         {/* TODO: fix wrapping issues */}
         <Group gap={0} wrap='nowrap'>
           <Avatar color='white' radius='md' variant='transparent' />
-          <Text>Kris Chamberlin</Text>
+          <Text c={'white'}>Kris Chamberlin</Text>
         </Group>
       </Stack>
     </>

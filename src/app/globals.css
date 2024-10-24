@@ -64,7 +64,7 @@ body {
   /* color: rgb(var(--foreground-rgb));
   background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb)); */
   /* background: rgb(2, 0, 36); */
-  color: white;
+  /* color: white; */
   background: rgb(2, 0, 36);
   /* background: linear-gradient(166deg, rgba(2, 0, 36, 1) 0%, rgba(81, 108, 245, 1) 32%, rgba(0, 212, 255, 1) 89%); */
   background: #516cf5;
