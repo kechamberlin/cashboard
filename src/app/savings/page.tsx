@@ -40,10 +40,14 @@ import {
   IconTrendingUp,
 } from '@tabler/icons-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useRef, useState } from 'react';
+import formatCurrency from '../utils/format-currency';
 
 const SavingsPage = () => {
   // TODO: Refactor and clean up file
+
+  const pathname = usePathname();
 
   const [cashflow, setCashflow] = useState('income');
 
@@ -62,6 +66,7 @@ const SavingsPage = () => {
   // const totalSavings = 144074.69; // $88,767.59 leftover
 
   const MOCK_GOALS = [
+    // TODO: is initialSavings needed? may even cause an issue with calculations
     {
       id: '0a',
       name: 'Family Savings',
@@ -94,11 +99,7 @@ const SavingsPage = () => {
   const ringProgressData = MOCK_GOALS?.sort((a, b) => b.currentValue - a.currentValue).map((goal) => ({
     value: (goal?.currentValue / totalSavings) * 100,
     color: goal?.color,
-    tooltip: `${goal?.name} - ${new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      trailingZeroDisplay: 'stripIfInteger',
-    }).format(goal?.currentValue)}`,
+    tooltip: `${goal?.name} - ${formatCurrency(goal?.currentValue, null, null, { trailingZeroDisplay: 'stripIfInteger' })}`,
   }));
 
   // const form = useForm({
@@ -165,38 +166,48 @@ const SavingsPage = () => {
     <Stack align='stretch' justify='center' p={'md'}>
       <Grid>
         <GridCol span={12}>
-          <Card shadow='sm' padding='lg' radius='md' withBorder>
-            <Stack>
-              <Group justify='space-between'>
-                <Text size='xl' c='black' fw={600}>
-                  Savings Overview
-                </Text>
-                <MonthPickerInput
-                  value={month}
-                  onChange={setMonth}
-                  aria-label='Month Picker Input'
-                  leftSection={<IconCalendarMonth stroke={1.5} />}
-                  leftSectionPointerEvents='none'
-                  radius='md'
-                  size='md'
-                  variant='filled'
-                />
-              </Group>
+          {/* <Card shadow='sm' padding='lg' radius='md' withBorder> */}
+          <Stack>
+            <Group justify='space-between'>
+              <Text size='xl' c='black' fw={600}>
+                Savings Overview
+              </Text>
+              <MonthPickerInput
+                value={month}
+                onChange={setMonth}
+                aria-label='Month Picker Input'
+                leftSection={<IconCalendarMonth stroke={1.5} />}
+                leftSectionPointerEvents='none'
+                radius='md'
+                size='md'
+                variant='filled'
+              />
+            </Group>
 
-              {/* TODO: fix wrap prop (ie, maybe remove it??) */}
-              <Group grow wrap='nowrap' align='flex-start'>
-                <GridCol span={8} p={'md'}>
+            {/* TODO: fix wrap prop (ie, maybe remove it??) */}
+            <Group grow wrap='nowrap' align='flex-start'>
+              <GridCol span={8} p={0}>
+                <Card withBorder radius={8}>
+                  <Stack gap={0}>
+                    <Text size='lg' fw={600}>
+                      Yearly Growth
+                    </Text>
+                    {/* <Text c={'dimmed'} size='xs' fs={'italic'}>
+                      Jan to Dec 2024
+                    </Text> */}
+                  </Stack>
                   <BarChart
                     h={325}
                     data={MOCK_DATA}
                     dataKey='month'
-                    valueFormatter={(value) =>
-                      new Intl.NumberFormat('en-US', {
-                        style: 'currency',
-                        currency: 'USD',
-                        trailingZeroDisplay: 'stripIfInteger',
-                      }).format(value)
-                    }
+                    // valueFormatter={(value) =>
+                    //   new Intl.NumberFormat('en-US', {
+                    //     style: 'currency',
+                    //     currency: 'USD',
+                    //     trailingZeroDisplay: 'stripIfInteger',
+                    //   }).format(value)
+                    // }
+                    // valueFormatter={formatCurrency}
                     series={[{ name: 'savings', label: 'Savings', color: 'green.7' }]}
                     type='stacked'
                     tooltipAnimationDuration={200}
@@ -228,40 +239,41 @@ const SavingsPage = () => {
                   //   { y: 20500, label: 'Average 2023', color: 'red.9' },
                   // ]}
                 /> */}
-                </GridCol>
+                </Card>
+              </GridCol>
 
-                <GridCol span={'auto'} p={0}>
-                  <Card withBorder radius={8}>
-                    <Stack gap={'md'}>
-                      <Group justify='space-between' align='flex-start'>
-                        <Stack gap={0}>
-                          <Text size='lg' fw={600}>
-                            Total Savings
-                          </Text>
-                          <Text c={'dimmed'} size='xs' fs={'italic'}>
-                            from last month
-                          </Text>
-                        </Stack>
+              <GridCol span={'auto'} p={0}>
+                <Card withBorder radius={8}>
+                  <Stack gap={'md'}>
+                    <Group justify='space-between' align='flex-start'>
+                      <Stack gap={0}>
+                        <Text size='lg' fw={600}>
+                          Total Savings
+                        </Text>
+                        <Text c={'dimmed'} size='xs' fs={'italic'}>
+                          from last month
+                        </Text>
+                      </Stack>
 
-                        <Group>
-                          <Badge color='green.9' leftSection={<IconTrendingUp />} size='lg'>
-                            {/* <Badge color='green.9' leftSection={<IconArrowUpRight />} size='lg'> */}
-                            +5.2%
-                          </Badge>
-                          <Text c={'green.7'} fw={'bold'} fz={'h3'}>
-                            {new Intl.NumberFormat('en-US', {
-                              style: 'currency',
-                              currency: 'USD',
-                              trailingZeroDisplay: 'stripIfInteger',
-                            }).format(totalSavings)}
-                          </Text>
-                        </Group>
+                      <Group>
+                        <Badge color='green.9' leftSection={<IconTrendingUp />} size='lg'>
+                          {/* <Badge color='green.9' leftSection={<IconArrowUpRight />} size='lg'> */}
+                          +5.2%
+                        </Badge>
+                        <Text c={'green.7'} fw={'bold'} fz={'h3'}>
+                          {new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            trailingZeroDisplay: 'stripIfInteger',
+                          }).format(totalSavings)}
+                        </Text>
                       </Group>
+                    </Group>
 
-                      {/* TODO: remove or keep? */}
-                      {/* <Divider variant='solid' /> */}
+                    {/* TODO: remove or keep? */}
+                    {/* <Divider variant='solid' /> */}
 
-                      {/* <Group justify='space-between'>
+                    {/* <Group justify='space-between'>
                       <Group gap={'xs'}>
                         <Text c={'dimmed'} fs={'italic'} size='sm'>
                           Goals
@@ -276,90 +288,90 @@ const SavingsPage = () => {
                       </Text>
                     </Group> */}
 
-                      <ScrollArea h={275} offsetScrollbars scrollHideDelay={0}>
-                        <Stack>
-                          {MOCK_GOALS?.sort((a, b) => b.currentValue - a.currentValue)?.map((goal) => (
-                            <>
-                              <Divider variant='dashed' />
+                    <ScrollArea h={275} offsetScrollbars scrollHideDelay={0}>
+                      <Stack>
+                        {MOCK_GOALS?.sort((a, b) => b.currentValue - a.currentValue)?.map((goal) => (
+                          <>
+                            <Divider variant='dashed' />
 
-                              <Group justify='space-between' key={goal?.id}>
-                                <Group gap={'xs'}>
-                                  <Tooltip
-                                    label={
-                                      goal?.currentValue >= goal?.target
-                                        ? 'Target Reached'
-                                        : goal?.currentValue < goal?.target && goal?.currentValue > 0
-                                        ? `In Progress: ${((goal?.currentValue / goal?.target) * 100).toFixed(0)}% of target`
-                                        : 'Not Started'
-                                    }
-                                  >
-                                    <ThemeIcon size='sm' variant='white' c={goal?.color}>
-                                      {goal?.currentValue >= goal?.target && <IconCircleCheckFilled fill={goal?.color} />}
-                                      {goal?.currentValue < goal?.target && goal?.currentValue > 0 && <IconProgress fill={goal?.color} />}
-                                      {goal?.currentValue === 0 && <IconCircle />}
+                            <Group justify='space-between' key={goal?.id}>
+                              <Group gap={'xs'}>
+                                <Tooltip
+                                  label={
+                                    goal?.currentValue >= goal?.target
+                                      ? 'Target Reached'
+                                      : goal?.currentValue < goal?.target && goal?.currentValue > 0
+                                      ? `In Progress: ${((goal?.currentValue / goal?.target) * 100).toFixed(0)}% of target`
+                                      : 'Not Started'
+                                  }
+                                >
+                                  <ThemeIcon size='sm' variant='white' c={goal?.color}>
+                                    {goal?.currentValue >= goal?.target && <IconCircleCheckFilled fill={goal?.color} />}
+                                    {goal?.currentValue < goal?.target && goal?.currentValue > 0 && <IconProgress fill={goal?.color} />}
+                                    {goal?.currentValue === 0 && <IconCircle />}
+                                  </ThemeIcon>
+                                </Tooltip>
+                                {/* <ColorSwatch color={goal?.color} radius={'sm'} size={14} /> */}
+                                <Text c={'dimmed'} fs={'italic'} size='sm'>
+                                  {goal?.name}
+                                </Text>
+                              </Group>
+                              <Text c={'dimmed'} fs={'italic'} size='sm'>
+                                {new Intl.NumberFormat('en-US', {
+                                  style: 'currency',
+                                  currency: 'USD',
+                                  // trailingZeroDisplay: 'stripIfInteger', // TODO: remove?
+                                }).format(goal?.currentValue)}
+                              </Text>
+                            </Group>
+
+                            {/* TODO: remove or keep? */}
+                            {/* <Divider variant='dashed' /> */}
+                          </>
+                        ))}
+
+                        {/* TODO: refactor */}
+                        {parseFloat(unallocatedSavings.toFixed(2)) !== 0.0 && (
+                          <>
+                            <Divider variant='dashed' />
+                            <Group justify='space-between'>
+                              <Group gap={'xs'}>
+                                {excessiveAllocations && (
+                                  <Tooltip label={'Your allocations exceed your total savings.  Please check your calculations.'}>
+                                    <ThemeIcon size='sm' variant='transparent' c={'red'}>
+                                      <IconAlertCircle fill='transparent' />
                                     </ThemeIcon>
                                   </Tooltip>
-                                  {/* <ColorSwatch color={goal?.color} radius={'sm'} size={14} /> */}
-                                  <Text c={'dimmed'} fs={'italic'} size='sm'>
-                                    {goal?.name}
-                                  </Text>
-                                </Group>
+                                )}
+                                {totalCurrentValue < totalSavings && (
+                                  <Tooltip label={'How much you have left over for goals'}>
+                                    <ThemeIcon size='sm' variant='transparent' c={'black'}>
+                                      <IconInfoCircle fill='transparent' color='var(--mantine-color-gray-6)' />
+                                    </ThemeIcon>
+                                  </Tooltip>
+                                )}
                                 <Text c={'dimmed'} fs={'italic'} size='sm'>
-                                  {new Intl.NumberFormat('en-US', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                    // trailingZeroDisplay: 'stripIfInteger', // TODO: remove?
-                                  }).format(goal?.currentValue)}
+                                  {excessiveAllocations ? 'Excessive allocations' : 'Unallocated'}
                                 </Text>
                               </Group>
-
-                              {/* TODO: remove or keep? */}
-                              {/* <Divider variant='dashed' /> */}
-                            </>
-                          ))}
-
-                          {/* TODO: refactor */}
-                          {parseFloat(unallocatedSavings.toFixed(2)) !== 0.0 && (
-                            <>
-                              <Divider variant='dashed' />
-                              <Group justify='space-between'>
-                                <Group gap={'xs'}>
-                                  {excessiveAllocations && (
-                                    <Tooltip label={'Your allocations exceed your total savings.  Please check your calculations.'}>
-                                      <ThemeIcon size='sm' variant='transparent' c={'red'}>
-                                        <IconAlertCircle fill='transparent' />
-                                      </ThemeIcon>
-                                    </Tooltip>
-                                  )}
-                                  {totalCurrentValue < totalSavings && (
-                                    <Tooltip label={'How much you have left over for goals'}>
-                                      <ThemeIcon size='sm' variant='transparent' c={'black'}>
-                                        <IconInfoCircle fill='transparent' color='var(--mantine-color-gray-6)' />
-                                      </ThemeIcon>
-                                    </Tooltip>
-                                  )}
-                                  <Text c={'dimmed'} fs={'italic'} size='sm'>
-                                    {excessiveAllocations ? 'Excessive allocations' : 'Unallocated'}
-                                  </Text>
-                                </Group>
-                                <Text c={'dimmed'} fs={'italic'} size='sm'>
-                                  {new Intl.NumberFormat('en-US', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                    trailingZeroDisplay: 'stripIfInteger', // TODO: remove?
-                                  }).format(unallocatedSavings)}
-                                </Text>
-                              </Group>
-                            </>
-                          )}
-                        </Stack>
-                      </ScrollArea>
-                    </Stack>
-                  </Card>
-                </GridCol>
-              </Group>
-            </Stack>
-          </Card>
+                              <Text c={'dimmed'} fs={'italic'} size='sm'>
+                                {new Intl.NumberFormat('en-US', {
+                                  style: 'currency',
+                                  currency: 'USD',
+                                  trailingZeroDisplay: 'stripIfInteger', // TODO: remove?
+                                }).format(unallocatedSavings)}
+                              </Text>
+                            </Group>
+                          </>
+                        )}
+                      </Stack>
+                    </ScrollArea>
+                  </Stack>
+                </Card>
+              </GridCol>
+            </Group>
+          </Stack>
+          {/* </Card> */}
         </GridCol>
       </Grid>
       {/* </Group> */}
@@ -469,7 +481,7 @@ const SavingsPage = () => {
                           </Group>
                           <Button
                             component={Link}
-                            href='#'
+                            href={`${pathname}/${goal?.id}`}
                             size='sm'
                             variant='light'
                             radius={'md'}
