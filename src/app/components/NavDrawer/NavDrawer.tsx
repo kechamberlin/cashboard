@@ -146,6 +146,7 @@ const NavDrawer = () => {
 
         {/* TODO: integrate when ready */}
         {/* TODO: fix wrapping issues */}
+        {/* TODO: check out Mantine menu component -> Custom Component as target */}
         <Group gap={0} wrap='nowrap'>
           <Avatar color='white' radius='md' variant='transparent' />
           <Text c={'white'}>Kris Chamberlin</Text>
