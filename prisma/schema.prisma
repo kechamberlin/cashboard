@@ -1,0 +1,73 @@
+// *** IMPORTANT: need to run `npx prisma generate` then `npx prisma migrate dev` after every change ***
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  clerkUserId String @unique
+  email String? @unique
+  username String? @unique
+  name String?
+  imageUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  incomeAndExpensesTransactions IncomeAndExpensesTransaction[]
+  // savingsTransactions SavingsTransaction[]
+  // investmentsTransactions InvestmentsTransaction[]
+  // creditScoreTransactions CreditScoreTransaction[]
+}
+
+model IncomeAndExpensesTransaction {
+  id String @id @default(uuid())
+  category String
+  description String
+  amount Float
+  // Relation to user
+  userId String
+  user User @relation(fields: [userId], references: [clerkUserId], onDelete: Cascade, onUpdate: Cascade)
+  createdAt DateTime @default(now())
+  @@index([userId])
+}
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// TODO:
+// model SavingsTransaction {
+//   id String @id @default(uuid())
+//   type String
+//   description String
+//   amount Float
+//   // Relation to user
+//   userId String
+//   user User @relation(fields: [userId], references: [clerkUserId], onDelete: Cascade, onUpdate: Cascade)
+//   createdAt DateTime @default(now())
+//   @@index([userId])
+// }
+
+// model InvestmentsTransaction {
+//   id String @id @default(uuid())
+//   category String
+//   description String
+//   amount Float
+//   // Relation to user
+//   userId String
+//   user User @relation(fields: [userId], references: [clerkUserId], onDelete: Cascade, onUpdate: Cascade)
+//   createdAt DateTime @default(now())
+//   @@index([userId])
+// }
+
+// model CreditScoreTransaction {
+//   id String @id @default(uuid())
+//   score Int
+//   // Relation to user
+//   userId String
+//   user User @relation(fields: [userId], references: [clerkUserId], onDelete: Cascade, onUpdate: Cascade)
+//   createdAt DateTime @default(now())
+//   @@index([userId])
+// }
