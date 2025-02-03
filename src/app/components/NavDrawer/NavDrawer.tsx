@@ -16,8 +16,9 @@ import {
 import Link from 'next/link';
 import styles from './NavDrawer.module.css';
 import { usePathname } from 'next/navigation';
+import { SignedIn, UserButton } from '@clerk/nextjs';
 
-const NavDrawer = () => {
+const NavDrawer = ({ userName }: any) => {
   const pathname = usePathname();
 
   return (
@@ -38,7 +39,7 @@ const NavDrawer = () => {
               <ThemeIcon radius='md' color='transparent' size={'xl'}>
                 <IconMoonStars style={{ width: '100%', height: '100%' }} />
               </ThemeIcon>
-              <Text>Good evening, Kris!</Text>
+              <Text>Good evening, {userName}!</Text>
             </Stack>
           </Card>
 
@@ -70,12 +71,20 @@ const NavDrawer = () => {
             href='/savings'
             label='Savings'
             leftSection={<IconPigMoney size='1.5rem' stroke={1.5} />}
+            active={pathname === '/savings' && true}
+            color='light'
+          />
+          {/* <NavLink
+            className={styles.navlink}
+            component={Link}
+            href='/savings'
+            label='Savings'
+            leftSection={<IconPigMoney size='1.5rem' stroke={1.5} />}
             childrenOffset={28}
             defaultOpened
             active={pathname === '/savings' && true}
             color='light'
           >
-            {/* TODO: will need to map over different funds as they are created */}
             <NavLink
               className={styles.navlink}
               component={Link}
@@ -121,7 +130,7 @@ const NavDrawer = () => {
               active={pathname === '/#' && true}
               color='light'
             />
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             className={styles.navlink}
@@ -144,13 +153,15 @@ const NavDrawer = () => {
           />
         </Stack>
 
-        {/* TODO: integrate when ready */}
-        {/* TODO: fix wrapping issues */}
-        {/* TODO: check out Mantine menu component -> Custom Component as target */}
-        <Group gap={0} wrap='nowrap'>
-          <Avatar color='white' radius='md' variant='transparent' />
-          <Text c={'white'}>Kris Chamberlin</Text>
-        </Group>
+        <SignedIn>
+          <UserButton
+            showName
+            appearance={{
+              elements: { userButtonBox: { flexDirection: 'row-reverse', color: 'white' } },
+              layout: { shimmer: false },
+            }}
+          />
+        </SignedIn>
       </Stack>
     </>
   );
