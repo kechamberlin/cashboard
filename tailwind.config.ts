@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        indigo: { 400: '#899eff', 500: '#516cf5' },
+        white: { 500: '#f6f8fc' },
+      },
       keyframes: {
         hide: {
           from: { opacity: '1' },

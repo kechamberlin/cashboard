@@ -9,9 +9,7 @@ import { lexend } from '@/ui/fonts';
 export default function Home() {
   return (
     <main className='flex min-h-screen flex-col p-6'>
-      <div
-        className={`${styles.hero} flex h-20 shrink-0 items-end rounded-lg p-4 md:h-52`}
-      >
+      <div className='bg-white-500 flex h-20 shrink-0 items-end rounded-lg p-4 md:h-52'>
         <p
           className={`${lexend.className} text-xl text-gray-700 md:text-3xl md:leading-normal`}
         >
@@ -30,7 +28,7 @@ export default function Home() {
           </p>
           <Link
             href='/login'
-            className={`${styles.indigo} flex items-center gap-5 self-start rounded-lg px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-indigo-400 md:text-base`}
+            className='bg-indigo-500 flex items-center gap-5 self-start rounded-lg px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-indigo-400 md:text-base'
           >
             <span>Log in</span> <RxArrowRight className='w-5 md:w-6' />
           </Link>
