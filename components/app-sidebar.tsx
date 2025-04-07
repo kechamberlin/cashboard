@@ -35,40 +35,40 @@ const data = {
     },
     {
       label: 'Income & Expenses',
-      url: '/income-and-expenses',
+      url: '/cashboard/income-and-expenses',
       icon: IconCoins,
     },
     {
       label: 'Savings',
-      url: '/savings',
+      url: '/cashboard/savings',
       icon: IconPigMoney,
       // isActive: true,
       // items: [
       //   {
       //     label: 'Overview',
-      //     url: '/savings',
+      //     url: '/cashboard/savings',
       //     icon: IconPigMoney,
       //   },
       //   {
       //     label: 'Create New Goal',
-      //     url: '/savings',
+      //     url: '/cashboard/savings',
       //     icon: IconPigMoney,
       //   },
       // ],
     },
     {
       label: 'Investments',
-      url: '/investments',
+      url: '/cashboard/investments',
       icon: IconChartBarPopular,
     },
     {
       label: 'Debt',
-      url: '/debt',
+      url: '/cashboard/debt',
       icon: IconMoneybagMinus,
     },
     {
       label: 'Credit Score',
-      url: '/credit-score',
+      url: '/cashboard/credit-score',
       icon: IconCreditCard,
     },
   ],
