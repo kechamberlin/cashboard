@@ -10,7 +10,7 @@ import {
 import Link from 'next/link';
 import { LogOut } from 'lucide-react';
 
-export function NavUser() {
+export function NavLogOut() {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
