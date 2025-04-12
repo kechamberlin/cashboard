@@ -1,17 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import {
-  IconChartBarPopular,
-  IconCoins,
-  IconCreditCard,
-  IconHome,
-  IconMoneybagMinus,
-  IconPigMoney,
-} from '@tabler/icons-react';
 
 import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/log-out';
+import { NavLogOut } from '@/components/log-out';
 import {
   Sidebar,
   SidebarContent,
@@ -20,59 +12,7 @@ import {
 } from '@/components/ui/sidebar';
 
 import { NavGreeting } from './nav-greeting';
-
-const data = {
-  user: {
-    name: 'Kris',
-    email: 'kris@heyo.is',
-    avatar: '/avatars/shadcn.jpg',
-  },
-  navMain: [
-    {
-      label: 'Home',
-      url: '/cashboard',
-      icon: IconHome,
-    },
-    {
-      label: 'Income & Expenses',
-      url: '/cashboard/income-and-expenses',
-      icon: IconCoins,
-    },
-    {
-      label: 'Savings',
-      url: '/cashboard/savings',
-      icon: IconPigMoney,
-      // isActive: true,
-      // items: [
-      //   {
-      //     label: 'Overview',
-      //     url: '/cashboard/savings',
-      //     icon: IconPigMoney,
-      //   },
-      //   {
-      //     label: 'Create New Goal',
-      //     url: '/cashboard/savings',
-      //     icon: IconPigMoney,
-      //   },
-      // ],
-    },
-    {
-      label: 'Investments',
-      url: '/cashboard/investments',
-      icon: IconChartBarPopular,
-    },
-    {
-      label: 'Debt',
-      url: '/cashboard/debt',
-      icon: IconMoneybagMinus,
-    },
-    {
-      label: 'Credit Score',
-      url: '/cashboard/credit-score',
-      icon: IconCreditCard,
-    },
-  ],
-};
+import { sidebarLinks } from '@/mock-data/sidebar-links';
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -81,10 +21,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavGreeting />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={sidebarLinks?.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser />
+        <NavLogOut />
       </SidebarFooter>
     </Sidebar>
   );
