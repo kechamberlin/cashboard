@@ -17,7 +17,7 @@
     "allocation": 0.1691,
     "goal": 35000.0,
     "perPaycheck": 750,
-    "projectedCompletion": "December 31, 2025",
+    "projectedCompletion": "2025-12-31T08:00:00.000Z",
     "status": "In Progress",
     "account": "HYSA"
   },
@@ -72,7 +72,7 @@
     "allocation": 0.0,
     "goal": 3500.0,
     "perPaycheck": 250.0,
-    "projectedCompletion": "October 31, 2025",
+    "projectedCompletion": "2025-10-31T07:00:00.000Z",
     "status": "Not Started",
     "account": "HYSA"
   },
@@ -127,7 +127,7 @@
     "allocation": 0.014,
     "goal": 3200.0,
     "perPaycheck": 300.0,
-    "projectedCompletion": "October 26, 2025",
+    "projectedCompletion": "2025-10-26T07:00:00.000Z",
     "status": "In Progress",
     "account": "SF Savings"
   },
@@ -138,7 +138,7 @@
     "allocation": 0.0441,
     "goal": 7700.0,
     "perPaycheck": 600.0,
-    "projectedCompletion": "June 30, 2025",
+    "projectedCompletion": "2025-06-30T07:00:00.000Z",
     "status": "In Progress",
     "account": "SF Savings"
   },
@@ -149,7 +149,7 @@
     "allocation": 0.0583,
     "goal": 10600.0,
     "perPaycheck": 800.0,
-    "projectedCompletion": "June 30, 2025",
+    "projectedCompletion": "2025-06-30T07:00:00.000Z",
     "status": "In Progress",
     "account": "SF Savings"
   }
