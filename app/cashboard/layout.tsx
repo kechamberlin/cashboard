@@ -13,7 +13,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       }
     >
       <AppSidebar variant='inset' />
-      {/* NOTE: SidebarInset is where I add app color theme */}
       <SidebarInset>
         <SiteHeader />
         <div className='flex flex-1 flex-col'>

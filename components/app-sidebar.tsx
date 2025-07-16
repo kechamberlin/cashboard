@@ -29,7 +29,7 @@ const data = {
   },
   navMain: [
     {
-      title: 'Home',
+      title: 'My Cashboard',
       url: '/cashboard',
       icon: IconHome,
     },
