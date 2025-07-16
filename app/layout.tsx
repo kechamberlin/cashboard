@@ -13,7 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Cashboard',
+  title: {
+    template: '%s | Cashboard',
+    default: 'Cashboard',
+  },
   description:
     'A personal finance application for those who like to micromanage their budget.',
 };

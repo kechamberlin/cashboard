@@ -35,27 +35,27 @@ const data = {
     },
     {
       title: 'Income & Expenses',
-      url: '#',
+      url: '/cashboard/income-and-expenses',
       icon: IconCoins,
     },
     {
       title: 'Savings',
-      url: '#',
+      url: '/cashboard/savings',
       icon: IconPigMoney,
     },
     {
       title: 'Investments',
-      url: '#',
+      url: '/cashboard/investments',
       icon: IconChartBar,
     },
     {
-      title: 'Debts',
-      url: '#',
+      title: 'Debt',
+      url: '/cashboard/debt',
       icon: IconMoneybagMinus,
     },
     {
       title: 'Credit Score',
-      url: '#',
+      url: '/cashboard/credit-score',
       icon: IconCreditCardFilled,
     },
   ],
@@ -63,7 +63,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible='icon' {...props}>
+    <Sidebar collapsible='offcanvas' {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
