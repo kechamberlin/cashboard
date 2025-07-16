@@ -37,7 +37,9 @@ export function NavMain({
                 tooltip={item.title}
               >
                 <Link href={item.url}>
-                  {item.icon && <item.icon />}
+                  {item.icon && (
+                    <item.icon fill='var(--cashboard-indigo-dark)' />
+                  )}
                   <span>{item.title}</span>
                 </Link>
               </SidebarMenuButton>

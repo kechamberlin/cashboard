@@ -3,8 +3,8 @@
 import {
   IconChartBar,
   IconCoins,
-  IconCreditCardFilled,
-  IconHomeFilled,
+  IconCreditCard,
+  IconHome,
   IconMoneybagMinus,
   IconPigMoney,
 } from '@tabler/icons-react';
@@ -31,7 +31,7 @@ const data = {
     {
       title: 'Home',
       url: '/cashboard',
-      icon: IconHomeFilled,
+      icon: IconHome,
     },
     {
       title: 'Income & Expenses',
@@ -56,7 +56,7 @@ const data = {
     {
       title: 'Credit Score',
       url: '/cashboard/credit-score',
-      icon: IconCreditCardFilled,
+      icon: IconCreditCard,
     },
   ],
 };
