@@ -3,6 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 export function LoginForm({
   className,
@@ -41,8 +42,9 @@ export function LoginForm({
                 </div>
                 <Input id='password' type='password' required />
               </div>
-              <Button type='submit' className='w-full'>
-                Login
+              {/* TODO: replace Link with form submission logic */}
+              <Button type='submit' className='w-full' asChild>
+                <Link href='/cashboard'>Login</Link>
               </Button>
               <div className='after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t'>
                 <span className='bg-card text-muted-foreground relative z-10 px-2'>
