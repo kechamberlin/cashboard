@@ -8,7 +8,7 @@ export function GreetingSkeleton() {
         <CardTitle className='flex gap-4 justify-center items-center'>
           <Skeleton className='h-16.25 w-16.25 rounded-full' />
           <div className='flex flex-col items-start gap-2'>
-            <Skeleton className='h-8 w-12 rounded-full' />
+            <Skeleton className='h-8 w-14 rounded-full' />
             <Skeleton className='h-5 w-16 rounded-full' />
           </div>
         </CardTitle>
