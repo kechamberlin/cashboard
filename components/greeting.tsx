@@ -33,6 +33,13 @@ export default function Greeting({
   if (isPending) return <GreetingSkeleton />;
   if (isError) return <div>Error: {error.message}</div>;
 
+  const isFahrenheit =
+    weather?.feelsLikeTemperature?.unit === 'FAHRENHEIT' ? 'F' : 'C';
+  const currentTime = weather?.currentTime;
+  const date = new Date(currentTime);
+  const isMorning = weather?.isDaytime && date?.getHours() < 12;
+  const isAfternoon = weather?.isDaytime && date?.getHours() > 12;
+
   return (
     <Card className='w-full bg-cashboard-indigo-light shadow-none flex flex-col gap-2'>
       <CardHeader>
@@ -48,7 +55,9 @@ export default function Greeting({
           )}
           <div className='flex flex-col items-start'>
             <span className='text-white text-2xl'>
-              {`${weather?.feelsLikeTemperature?.degrees}˚`}
+              {`${weather?.feelsLikeTemperature?.degrees?.toFixed(
+                0
+              )}˚${isFahrenheit}`}
             </span>
             <span className='text-white text-sm font-medium'>
               {`${weather?.weatherCondition?.description?.text}`}
@@ -57,7 +66,9 @@ export default function Greeting({
         </CardTitle>
       </CardHeader>
       <CardContent className='text-center text-white font-semibold'>
-        {`Good morning, ${user?.name}!`}
+        {`Good ${
+          isMorning ? `morning` : isAfternoon ? `afternoon` : `evening`
+        }, ${user?.name}!`}
       </CardContent>
     </Card>
   );
