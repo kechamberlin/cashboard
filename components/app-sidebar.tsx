@@ -17,9 +17,8 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import Greeting from './greeting';
 
 const data = {
   user: {
@@ -65,11 +64,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible='offcanvas' {...props}>
       <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            {/* TODO: add Greeting component */}
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <Greeting user={data.user} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
